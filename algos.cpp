@@ -72,9 +72,9 @@ void bubbleSort(int arr[], int n) {
    for (int i = 0; i < n - 1; i++) {
       for (int j = 0; j < n - i - 1; j++) {
          if (arr[j] > arr[j+1]) {
-            int temp = arr[j]
-            arr[j] = arr[j + 1]
-            arr[j + 1] = temp
+            int temp = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = temp;
          }
       }
    }
@@ -90,4 +90,43 @@ void mergeSort(int arr[], int i, int k) {
       mergeSort(arr, j + 1, k);
       merge(arr, i, j, k);
    }
+}
+
+int partition(int arr[], int lowIndex, int highIndex) {
+   int midpoint = lowIndex + (highIndex - lowIndex) / 2;
+   int pivot = arr[midpoint];
+   
+   bool done = false; 
+   while (!done) {
+      while (arr[lowIndex] < pivot) {
+         lowIndex += 1;
+      }
+
+      while (pivot < arr[highIndex]) {
+         highIndex -= 1;
+      }
+
+      if (lowIndex >= highIndex) {
+         done = true;
+      } else {
+         int temp = arr[lowIndex];
+         arr[lowIndex] = arr[highIndex];
+         arr[highIndex] = temp;
+         lowIndex += 1;
+         highIndex -= 1;
+      }
+   }
+   
+   return highIndex;
+}
+
+void quicksort(int arr[], int lowIndex, int highIndex) {
+   if (lowIndex >= highIndex) {
+      return;
+   }
+
+   int lowEndIndex = partition(arr, lowIndex, highIndex);
+
+   quicksort(arr, lowIndex, lowEndIndex);
+   quicksort(arr, lowEndIndex + 1, highIndex);
 }
