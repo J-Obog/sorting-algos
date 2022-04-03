@@ -130,3 +130,37 @@ void quicksort(int arr[], int lowIndex, int highIndex) {
    quicksort(arr, lowIndex, lowEndIndex);
    quicksort(arr, lowEndIndex + 1, highIndex);
 }
+
+void maxHeapPercolateDown(int nodeIndex, int arr[], int n) {
+   int childIndex = 2 * nodeIndex + 1;
+   int value = arr[nodeIndex];
+
+   while (childIndex < n) {
+      int maxValue = value;
+      int maxIndex = -1;
+      for (int i = 0; i < 2 && i + childIndex < n; i++) {
+         if (arr[i + childIndex] > maxValue) {
+            maxValue = arr[i + childIndex];
+            maxIndex = i + childIndex;
+         }
+      }
+
+      if (maxValue == value) {
+         return;
+      }
+      else {
+         nodeIndex = maxIndex;
+         childIndex = 2 * nodeIndex + 1;
+      }
+   }
+}
+
+void heapsort(int arr[], int n) {
+   for(int i = n / 2 - 1; i >= 0; i--) {
+      maxHeapPercolateDown(i, arr, n);
+   }
+
+   for(int i = n - 1; i > 0; i--) {
+      maxHeapPercolateDown(0, arr, i);
+   }
+}
