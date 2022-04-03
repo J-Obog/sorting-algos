@@ -35,19 +35,19 @@ void merge(int arr[], int i, int j, int k) {
    }
 }
 
-void selectionSort(int a[], int size) {
+void selectionSort(int arr[], int n) {
     int outer, inner, min;
-    for (outer = 0; outer < size - 1; outer++) {
+    for (outer = 0; outer < n - 1; outer++) {
         min = outer;
-        for (inner = outer + 1; inner < size; inner++) {
-            if (a[inner] < a[min]) {
+        for (inner = outer + 1; inner < n; inner++) {
+            if (arr[inner] < arr[min]) {
                 min = inner;
             }
         }
-        int temp = a[outer];
-        a[outer] = a[min];
+        int temp = arr[outer];
+        arr[outer] = arr[min];
 
-        a[min] = temp;
+        arr[min] = temp;
     }
 }
 
@@ -66,6 +66,18 @@ void insertionSort(int arr[], int n)
         }
         arr[j + 1] = key;
     }
+}
+
+void bubbleSort(int arr[], int n) {
+   for (int i = 0; i < n - 1; i++) {
+      for (int j = 0; j < n - i - 1; j++) {
+         if (arr[j] > arr[j+1]) {
+            int temp = arr[j]
+            arr[j] = arr[j + 1]
+            arr[j + 1] = temp
+         }
+      }
+   }
 }
 
 void mergeSort(int arr[], int i, int k) {
