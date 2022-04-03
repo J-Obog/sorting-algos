@@ -35,6 +35,22 @@ void merge(int arr[], int i, int j, int k) {
    }
 }
 
+void selectionSort(int a[], int size) {
+    int outer, inner, min;
+    for (outer = 0; outer < size - 1; outer++) {
+        min = outer;
+        for (inner = outer + 1; inner < size; inner++) {
+            if (a[inner] < a[min]) {
+                min = inner;
+            }
+        }
+        int temp = a[outer];
+        a[outer] = a[min];
+
+        a[min] = temp;
+    }
+}
+
 void mergeSort(int arr[], int i, int k) {
    int j = 0;
    
