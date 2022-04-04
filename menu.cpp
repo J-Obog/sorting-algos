@@ -1,5 +1,7 @@
 #include <iostream>
 #include <time.h>
+#include "algos.hpp"
+
 using namespace std;
 
 
@@ -15,6 +17,7 @@ srand(time(0));
 int choice;
 bool choiceOn = true;
 while (choiceOn != false){
+    bool printArr = false;
 cout << "****************************\n";
 cout << " 1 - Selection Sort.\n";
 cout << " 2 - Insertion Sort\n";
@@ -26,36 +29,55 @@ cout << " 7 - Exit.\n";
 cout << " Enter in a choice and press enter: ";
 
 cin >> choice;
+    printArr = choice >= 1 && choice <= 6;
 
 switch (choice)
 {
     
 case 1:
-//enter code here for selection sort
+cout << "Selection Sort\n";
+        
+    selectionSort(arr2, 10000);
+    
 break;
 case 2:
-//enter code here for insertion sort
+cout << "Insertion Sort\n";
+        
+    insertionSort(arr2, 10000);
 break;
 case 3:
-//enter the code here for bubble sort
+cout << "Bubble Sort\n";
+        
+    bubbleSort(arr2, 10000);
 break;
 case 4:
-//enter the code here for merge sort
+cout << "Merge Sort\n";
+        
+    mergeSort(arr2, 10000);
 break;
 case 5:
-//enter code here for quick sort
+cout << "Quick Sort\n";
+        
+    quicksort(arr2, 10000);
 break;
 case 6:
-//enter code here for heap sort
+cout << "Heap Sort\n";
+        
+    heapsort(arr2, 10000);
 break;
 case 7:
-//enter code here for program exit
+cout << "Program exited.\n";
+choiceOn = false;
 break;
 default:
-//enter code here for default case
+cout << "Invalid choice. \n";
+cout << "Try again.\n";
 break;
 }
-
+    if (printArr){
+for (int i = 0; i < 50; i++)
+    cout << arr[i] << " ";
+    }
 }
 
 }
