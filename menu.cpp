@@ -17,7 +17,6 @@ srand(time(0));
 int choice;
 bool choiceOn = true;
 while (choiceOn != false){
-    bool printArr = false;
 cout << "****************************\n";
 cout << " 1 - Selection Sort.\n";
 cout << " 2 - Insertion Sort\n";
@@ -29,7 +28,13 @@ cout << " 7 - Exit.\n";
 cout << " Enter in a choice and press enter: ";
 
 cin >> choice;
-    printArr = choice >= 1 && choice <= 6;
+    bool sorting = choice >= 1 && choice <= 6;
+    if (sorting)
+    {
+        for(int i = 0; i < 10000; i++) //copy content 
+            arr2[i] = arr1[i];
+    }
+ const clock_t t = clock(); //save start epoch
 
 switch (choice)
 {
@@ -74,9 +79,11 @@ cout << "Invalid choice. \n";
 cout << "Try again.\n";
 break;
 }
-    if (printArr){
+    if (sorting){
+  cout << "This sorting algorithm ran in" << float(clock() - t)/CLOCKS_PER_SEC << " secs\n"; //execution time in seconds
 for (int i = 0; i < 50; i++)
     cout << arr[i] << " ";
+        
     }
 }
 
