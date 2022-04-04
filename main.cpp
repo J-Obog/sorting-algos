@@ -11,7 +11,7 @@ int main() {
     int arr1[10000], arr2[10000]; //array 1 is original array, array 2 is the copied array
 
     for(int i = 0; i < 10000; i++) //randomizing array 
-        arr1[i] = rand() % 100;
+        arr1[i] = rand() % 10000;
     
     int choice;
     bool choiceOn = true;
@@ -79,10 +79,12 @@ int main() {
         }
 
         if(sorting){
-            cout << "This sorting algorithm ran in" << float(clock() - t)/CLOCKS_PER_SEC << " secs\n"; //execution time in seconds
+            cout << "This sorting algorithm ran in " << float(clock() - t)/CLOCKS_PER_SEC << " secs\n"; //execution time in seconds
             
             for(int i = 0; i < 50; i++)
-                cout << arr2[i] << " ";        
+                cout << arr2[i] << " ";       
+
+            cout << endl; 
         }
     }
 }
