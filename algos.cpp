@@ -1,11 +1,13 @@
+//#include "algos.hpp"
+
 void merge(int arr[], int i, int j, int k) {
    int mergedSize = k - i + 1;
    int mergePos = 0;
    int leftPos = 0;
    int rightPos = 0;
    int* mergedNumbers = new int[mergedSize];
-   int leftPos = i;
-   int rightPos = j + 1;
+   leftPos = i;
+   rightPos = j + 1;
    
    while (leftPos <= j && rightPos <= k) {
       if (arr[leftPos] <= arr[rightPos]) {
