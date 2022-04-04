@@ -72,9 +72,9 @@ void bubbleSort(int arr[], int n) {
    for (int i = 0; i < n - 1; i++) {
       for (int j = 0; j < n - i - 1; j++) {
          if (arr[j] > arr[j+1]) {
-            int temp = arr[j]
-            arr[j] = arr[j + 1]
-            arr[j + 1] = temp
+            int temp = arr[j];
+            arr[j] = arr[j + 1];
+            arr[j + 1] = temp;
          }
       }
    }
@@ -89,5 +89,78 @@ void mergeSort(int arr[], int i, int k) {
       mergeSort(arr, i, j);
       mergeSort(arr, j + 1, k);
       merge(arr, i, j, k);
+   }
+}
+
+int partition(int arr[], int lowIndex, int highIndex) {
+   int midpoint = lowIndex + (highIndex - lowIndex) / 2;
+   int pivot = arr[midpoint];
+   
+   bool done = false; 
+   while (!done) {
+      while (arr[lowIndex] < pivot) {
+         lowIndex += 1;
+      }
+
+      while (pivot < arr[highIndex]) {
+         highIndex -= 1;
+      }
+
+      if (lowIndex >= highIndex) {
+         done = true;
+      } else {
+         int temp = arr[lowIndex];
+         arr[lowIndex] = arr[highIndex];
+         arr[highIndex] = temp;
+         lowIndex += 1;
+         highIndex -= 1;
+      }
+   }
+   
+   return highIndex;
+}
+
+void quicksort(int arr[], int lowIndex, int highIndex) {
+   if (lowIndex >= highIndex) {
+      return;
+   }
+
+   int lowEndIndex = partition(arr, lowIndex, highIndex);
+
+   quicksort(arr, lowIndex, lowEndIndex);
+   quicksort(arr, lowEndIndex + 1, highIndex);
+}
+
+void maxHeapPercolateDown(int nodeIndex, int arr[], int n) {
+   int childIndex = 2 * nodeIndex + 1;
+   int value = arr[nodeIndex];
+
+   while (childIndex < n) {
+      int maxValue = value;
+      int maxIndex = -1;
+      for (int i = 0; i < 2 && i + childIndex < n; i++) {
+         if (arr[i + childIndex] > maxValue) {
+            maxValue = arr[i + childIndex];
+            maxIndex = i + childIndex;
+         }
+      }
+
+      if (maxValue == value) {
+         return;
+      }
+      else {
+         nodeIndex = maxIndex;
+         childIndex = 2 * nodeIndex + 1;
+      }
+   }
+}
+
+void heapsort(int arr[], int n) {
+   for(int i = n / 2 - 1; i >= 0; i--) {
+      maxHeapPercolateDown(i, arr, n);
+   }
+
+   for(int i = n - 1; i > 0; i--) {
+      maxHeapPercolateDown(0, arr, i);
    }
 }
